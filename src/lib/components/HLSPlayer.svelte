@@ -4,6 +4,7 @@
   import { onMount, onDestroy } from 'svelte';
   import type Player from 'video.js/dist/types/player';
 
+  export let src;
   let player: Player;
 
   onMount(() => {
@@ -22,5 +23,5 @@
   width="640"
   height="264"
 >
-  <source src="http://localhost:8080/hls/louisj.m3u8" type="application/x-mpegURL">
+  <source {src} type="application/x-mpegURL">
 </video>
