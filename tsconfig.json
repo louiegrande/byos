@@ -13,7 +13,8 @@
         "plugins": [{
           "name": "typescript-svelte-plugin",
           "enabled": true,
-          "assumeIsSvelteProject": false
+          "assumeIsSvelteProject": false,
+          "typeRoots": ["./src/lib/twitch.d.ts"]
         }]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

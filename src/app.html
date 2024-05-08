@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="filling">
 	<head>
+        <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+        <link rel="stylesheet" href="../src/app.css" />
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+	<body class="filling" data-sveltekit-preload-data="hover" style="display: flex; margin: 0">
+		<div class="filling" style="display: flex">%sveltekit.body%</div>
 	</body>
 </html>

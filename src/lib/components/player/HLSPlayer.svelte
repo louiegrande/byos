@@ -8,15 +8,16 @@
   let player: Player;
 
   onMount(() => {
-    player = videojs('my-video');
+    player = videojs('video');
   });
   
   onDestroy(() => {
     if (player) player.dispose();
   });
 </script>
+
 <video
-  id="my-video"
+  id="video"
   class="video-js"
   controls
   preload="auto"

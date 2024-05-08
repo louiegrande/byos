@@ -1,4 +1,5 @@
-<script>
-import HLSPlayer from '$lib/components/HLSPlayer.svelte';
+<script lang="ts">
+  import TwtPlayer from "$lib/components/player/TwtPlayer.svelte";
 </script>
-<HLSPlayer src="http://localhost:8080/hls/louisj.m3u8" />
+
+<TwtPlayer id="1" channel="Wirtual"/>
