@@ -1,26 +1,31 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
 
-	export let channel = 'wirtual';
-	export let width = '100%';
-	export let height = '100%';
-	export let autoplay = true;
-	export let muted = true;
-	export let parent = 'localhost';
-    export let id: string;
+  export let channel = 'louiegrande';
+  export let width = '100%';
+  export let height = '100%';
+  export let autoplay = true;
+  export let muted = true;
+  export let parent = 'localhost';
+  export let id: string;
 
-	let player: Twitch.Player;
+  let player: Twitch.Player;
 
-	onMount(async () => {
-		player = new Twitch.Player(`twitch-embed-${id}`, {
-			channel,
-			width,
-			height,
-			autoplay,
-			muted,
-			parent
-		});
-	});
+  const dispatch = createEventDispatcher();
+
+  onMount(async () => {
+    player = new Twitch.Player(`twitch-player-${id}`, {
+  	  channel,
+  	  width,
+  	  height,
+  	  autoplay,
+  	  muted,
+  	  parent
+    });
+    dispatch('playerCreated', {
+      player: player
+    });
+  });
 </script>
 
-<div id="twitch-embed-{id}"></div>
+<div id="twitch-player-{id}"></div>

@@ -4,7 +4,7 @@
 
   let streams: [string];
 
-  function addStream(event) {
+  function addStream() {
     if (!streams) {
       streams = ["http://localhost:8080/hls/louisj.m3u8"];
     } else {
