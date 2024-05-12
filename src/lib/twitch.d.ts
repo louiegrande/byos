@@ -10,6 +10,7 @@ declare namespace Twitch {
       time?: string;
 	  parent: string | string[];
 	  playsinline?: boolean;
+      controls?: boolean;
 	}
 
     interface PlaybackStats {

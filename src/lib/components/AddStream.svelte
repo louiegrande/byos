@@ -10,18 +10,18 @@
 
   function addStream() {
     dispatch('addStream', {
-      type: streamingService,
-      name: channelName
+      streamingService: streamingService,
+      channelName: channelName
     });
   }
 </script>
 
 <div>
   <select bind:value={streamingService}>
-    {#each Object.keys(StreamingService) as streamingService}
-      <option value="{streamingService}">{StreamingService[streamingService]}</option>
+    {#each Object.values(StreamingService) as streamingService}
+      <option value="{streamingService}">{streamingService}</option>
     {/each}
   </select>
-  <input bind:value={channelName} placeholder="Stream"/>
+  <input bind:value={channelName} placeholder="Enter Channel"/>
   <button on:click={addStream}>Add</button>
 </div>

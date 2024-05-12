@@ -17,6 +17,9 @@
   height: 10%;
 }
 
+.draggable {
+  position: absolute;
+}
 .filling {
   width: 100%;
   height: 100%;

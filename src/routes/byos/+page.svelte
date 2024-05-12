@@ -1,23 +1,30 @@
 <script lang="ts">
-  import HLSPlayer from "$lib/components/player/HLSPlayer.svelte";
   import AddStream from "$lib/components/AddStream.svelte";
+  import TwtPlayer from "$lib/components/player/TwtPlayer.svelte";
+  import Draggable from "$lib/components/Draggable.svelte";
   import type { Stream } from "$lib/stream";
+  import { StreamingService } from "$lib/stream";
 
-  let streams: [string];
+  let streams: [Stream];
 
-  function addStream() {
+  function addStream(event: CustomEvent) {
+    const stream: Stream = event.detail;
     if (!streams) {
-      streams = ["http://localhost:8080/hls/louisj.m3u8"];
+      streams = [stream];
     } else {
-      streams = [...streams, "http://localhost:8080/hls/louisj.m3u8"];
+      streams = [...streams, stream];
     }
   }
 </script>
 
 <div>
   {#if streams}
-    {#each streams as stream}
-      <HLSPlayer src="{stream}"/>
+    {#each streams as stream, id}
+      <Draggable>
+      {#if stream.streamingService === StreamingService.TWITCH}
+        <TwtPlayer id={id} channel={stream.channelName} controls={false}/>
+      {/if}
+      </Draggable>
     {/each}
   {/if}
 </div>

@@ -1,13 +1,14 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
 
-  export let channel = 'louiegrande';
-  export let width = '100%';
-  export let height = '100%';
-  export let autoplay = true;
-  export let muted = true;
-  export let parent = 'localhost';
-  export let id: string;
+  export let channel: string = 'louiegrande';
+  export let width: string = '100%';
+  export let height: string = '100%';
+  export let autoplay: boolean = true;
+  export let muted: boolean = true;
+  export let parent: string = 'localhost';
+  export let id: string | number;
+  export let controls: boolean = true;
 
   let player: Twitch.Player;
 
@@ -20,7 +21,8 @@
   	  height,
   	  autoplay,
   	  muted,
-  	  parent
+  	  parent,
+      controls
     });
     dispatch('playerCreated', {
       player: player
