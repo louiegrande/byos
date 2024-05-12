@@ -1,9 +1,8 @@
 export type Stream = {
-  type: StreamingSite,
-  name: string
+  streamingService: StreamingService,
+  channelName: string
 }
 
-export enum StreamingSite {
-  BYOS = "Byos",
+export enum StreamingService {
   TWITCH = "Twitch"
 }

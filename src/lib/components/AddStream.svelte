@@ -1,27 +1,27 @@
 <script lang="ts">
-  import { StreamingSite } from "$lib/stream";
+  import { StreamingService } from "$lib/stream";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
 
-  let streamType: StreamingSite;
-  let streamName: string;
+  let streamingService: StreamingService;
+  let channelName: string;
 
 
   function addStream() {
     dispatch('addStream', {
-      type: streamType,
-      name: streamName
+      type: streamingService,
+      name: channelName
     });
   }
 </script>
 
 <div>
-  <select bind:value={streamType}>
-    {#each Object.keys(StreamingSite) as streamingSite}
-      <option value="{streamingSite}">{StreamingSite[streamingSite]}</option>
+  <select bind:value={streamingService}>
+    {#each Object.keys(StreamingService) as streamingService}
+      <option value="{streamingService}">{StreamingService[streamingService]}</option>
     {/each}
   </select>
-  <input bind:value={streamName} placeholder="Stream"/>
+  <input bind:value={channelName} placeholder="Stream"/>
   <button on:click={addStream}>Add</button>
 </div>

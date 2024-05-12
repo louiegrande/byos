@@ -1,6 +1,7 @@
 <script lang="ts">
   import HLSPlayer from "$lib/components/player/HLSPlayer.svelte";
   import AddStream from "$lib/components/AddStream.svelte";
+  import type { Stream } from "$lib/stream";
 
   let streams: [string];
 
