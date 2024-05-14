@@ -5,7 +5,7 @@
 </script>
 
 <div class="streamContainer">
-  {#each $streams.entries() as stream}
+  {#each $streams.entries() as stream (stream[0])}
     {#if stream[1].streamingService === StreamingService.TWITCH}
       <TwtPlayer
         id={stream[0]}

@@ -6,7 +6,7 @@
 
 <div class="sidebar">
   <AddStream/>
-  {#each $players.entries() as player}
+  {#each $players.entries() as player (player[0])}
     <PlayerControl id={player[0]} player={player[1]}/>
   {/each}
 </div>
