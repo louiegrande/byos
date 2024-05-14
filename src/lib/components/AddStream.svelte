@@ -16,12 +16,29 @@
   }
 </script>
 
-<div>
-  <select bind:value={streamingService}>
+<div class="row singleRow">
+  <input
+    class="rowElement"
+    bind:value={channelName}
+    placeholder="Enter Channel"
+    style="width: 7.125rem"
+  />
+  <select
+    class="rowElement"
+    bind:value={streamingService}
+    style="width: 7.125rem"
+  >
     {#each Object.values(StreamingService) as streamingService}
       <option value="{streamingService}">{streamingService}</option>
     {/each}
   </select>
-  <input bind:value={channelName} placeholder="Enter Channel"/>
-  <button on:click={addStream}>Add</button>
+</div>
+<div class="row singleRow">
+  <button
+    class="rowElement"
+    on:click={addStream}
+    style="width: 14.5rem"
+  >
+    Add
+  </button>
 </div>

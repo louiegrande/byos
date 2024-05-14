@@ -1,4 +1,4 @@
 <nav class="sidebar">
-  <a class="sidebarElement" href="/">home</a>
-  <a class="sidebarElement" href="/byos">byos</a>
+  <a class="row singleRow" href="/">home</a>
+  <a class="row singleRow" href="/byos">byos</a>
 </nav>

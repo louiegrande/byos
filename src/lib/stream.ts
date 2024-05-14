@@ -1,4 +1,5 @@
 export type Stream = {
+  id: number,
   streamingService: StreamingService,
   channelName: string
 }
