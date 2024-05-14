@@ -5,6 +5,7 @@
   export let id: number;
   export let player: Twitch.Player;
   let muted: Boolean = player.getMuted();
+  let paused: Boolean = player.isPaused();
 
   function mute() {
     muted = !player.getMuted()
@@ -12,6 +13,13 @@
   }
 
   function play() {
+    if (player.isPaused()) {
+      player.play();
+      paused = false;
+    } else {
+      player.pause();
+      paused = true;
+    }
   }
 
   function remove() {
@@ -21,11 +29,15 @@
 </script>
 
 <div class="row singleRow">
-  <p class="rowElement">{player.getChannel()}</p>
+  <p class="rowElement">{$streams.get(id).channelName}</p>
 </div>
 <div class="row singleRow">
   <button class="rowElement" on:click={play} style="width: 1.25rem">
-    <img class="icon" src="icons/play.svg"/>
+    {#if paused}
+      <img class="icon" src="icons/play.svg"/>
+    {:else}
+      <img class="icon" src="icons/pause.svg"/>
+    {/if}
   </button>
   <button class="rowElement" on:click={mute} style="width: 1.25rem">
     {#if muted}
