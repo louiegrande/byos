@@ -5,18 +5,10 @@
 
   let streamingService: StreamingService;
   let channelName: string;
-  let stream_array: [Stream];
   let index: number = 0;
 
   function addStream() {
-    streams.subscribe((value: [Stream]) => {
-      stream_array = [...value,{
-        id: index,
-        streamingService: streamingService,
-        channelName: channelName
-      }];
-    });
-    streams.set(stream_array);
+    streams.add(index, streamingService, channelName);
     index += 1;
   }
 </script>

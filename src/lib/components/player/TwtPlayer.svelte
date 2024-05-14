@@ -12,7 +12,6 @@
   export let controls: boolean = true;
 
   let player: Twitch.Player;
-  let player_array: [{id: number, player: Twitch.Player}];
 
   onMount(async () => {
     player = new Twitch.Player(`twitch-player-${id}`, {
@@ -25,11 +24,7 @@
       controls
     });
 
-    players.subscribe((value: [{id: number, player: Twitch.Player}]) => {
-      player_array = [...value, {id: id, player: player}];
-    });
-
-    players.set(player_array);
+    players.add(id, player);
   });
 </script>
 
