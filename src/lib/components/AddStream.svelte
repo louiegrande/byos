@@ -1,18 +1,23 @@
 <script lang="ts">
   import { StreamingService } from "$lib/stream";
-  import { createEventDispatcher } from "svelte";
-
-  const dispatch = createEventDispatcher();
+  import type { Stream } from "$lib/stream";
+  import { streams } from "$lib/stores";
 
   let streamingService: StreamingService;
   let channelName: string;
-
+  let stream_array: [Stream];
+  let index: number = 0;
 
   function addStream() {
-    dispatch('addStream', {
-      streamingService: streamingService,
-      channelName: channelName
+    streams.subscribe((value: [Stream]) => {
+      stream_array = [...value,{
+        id: index,
+        streamingService: streamingService,
+        channelName: channelName
+      }];
     });
+    streams.set(stream_array);
+    index += 1;
   }
 </script>
 

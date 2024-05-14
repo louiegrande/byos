@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { onMount } from 'svelte';
+  import { players } from '$lib/stores';
 
   export let channel: string = 'louiegrande';
   export let width: string = '100%';
@@ -11,8 +12,7 @@
   export let controls: boolean = true;
 
   let player: Twitch.Player;
-
-  const dispatch = createEventDispatcher();
+  let player_array: [{id: number, player: Twitch.Player}];
 
   onMount(async () => {
     player = new Twitch.Player(`twitch-player-${id}`, {
@@ -24,9 +24,12 @@
   	  parent,
       controls
     });
-    dispatch('playerCreated', {
-      player: player
+
+    players.subscribe((value: [{id: number, player: Twitch.Player}]) => {
+      player_array = [...value, {id: id, player: player}];
     });
+
+    players.set(player_array);
   });
 </script>
 

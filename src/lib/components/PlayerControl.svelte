@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
+  import type { Stream } from "$lib/stream";
+  import { players } from "$lib/stores";
+  import { streams } from "$lib/stores";
 
   export let id: number;
   export let player: Twitch.Player;
+  let stream_array: [Stream];
+  let player_array: [{id: number, player: Twitch.Player}];
   let muted: Boolean = player.getMuted();
-
-  let dispatch = createEventDispatcher();
 
   function mute() {
     muted = !player.getMuted()
@@ -16,9 +18,10 @@
   }
 
   function remove() {
-    dispatch('removePlayer',{
-        id: id,
-    });
+    streams.subscribe((value: [Stream]) => {stream_array = value});
+    players.subscribe((value: [{id: number, player: Twitch.Player}]) => {player_array =value});
+    streams.set(stream_array.filter(stream => id !== stream.id));
+    players.set(player_array.filter(player => id !== player.id));
   }
 </script>
 
