@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { players } from '$lib/stores';
+  import { dragElement } from '$lib/positioning';
 
   export let channel: string = 'louiegrande';
   export let width: string = '100%';
@@ -24,8 +25,14 @@
       controls
     });
 
-    players.add(id, player);
+    players.put(id, player);
+
+    const draggableElement = document.getElementById(`twitch-player-${id}`);
+
+    if (draggableElement != null) {
+      dragElement(draggableElement);
+    }
   });
 </script>
 
-<div id="twitch-player-{id}"></div>
+<div id="twitch-player-{id}" class="draggable"></div>

@@ -1,15 +1,14 @@
 <script lang="ts">
   import { StreamingService } from "$lib/stream";
-  import type { Stream } from "$lib/stream";
   import { streams } from "$lib/stores";
 
   let streamingService: StreamingService;
   let channelName: string;
-  let index: number = 0;
+  let id: number = 0;
 
   function addStream() {
-    streams.add(index, streamingService, channelName);
-    index += 1;
+    streams.put(id, streamingService, channelName);
+    id += 1;
   }
 </script>
 

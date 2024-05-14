@@ -6,9 +6,7 @@
 
 <div class="sidebar">
   <AddStream/>
-  {#if $players}
-    {#each $players as player}
-      <PlayerControl id={player.id} player={player.player} on:removePlayer/>
-    {/each}
-  {/if}
+  {#each $players.entries() as player}
+    <PlayerControl id={player[0]} player={player[1]}/>
+  {/each}
 </div>

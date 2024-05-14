@@ -15,8 +15,8 @@
   }
 
   function remove() {
-    streams.remove(id);
-    players.remove(id);
+    streams.delete(id);
+    players.delete(id);
   }
 </script>
 
