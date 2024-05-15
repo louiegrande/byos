@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
 import type { Stream, StreamingService } from '$lib/stream';
 
-function createStreams(init: Map<number,Stream>): Writable<Map<number,Stream>> {
+function createStreams(init: Map<number,Stream>) {
   const { subscribe, update }: Writable<Map<number,Stream>> = writable(init);
 
   return {
@@ -24,7 +24,7 @@ function createStreams(init: Map<number,Stream>): Writable<Map<number,Stream>> {
   };
 }
 
-function createPlayers(init: Map<number,Twitch.Player>): Writable<Map<number,Twitch.Player>> {
+function createPlayers(init: Map<number,Twitch.Player>) {
   const { subscribe, update }: Writable<Map<number,Twitch.Player>> = writable(init);
 
   return {
@@ -51,6 +51,6 @@ function createPlayers(init: Map<number,Twitch.Player>): Writable<Map<number,Twi
   };
 }
 
-export const streams: Writable<Map<number,Stream>> = createStreams(new Map<number,Stream>());
-export const players: Writable<Map<number,Twitch.Player>> = createPlayers(new Map<number,Twitch.Player>());
+export const streams = createStreams(new Map<number,Stream>());
+export const players = createPlayers(new Map<number,Twitch.Player>());
 
