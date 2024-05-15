@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { players } from "$lib/stores";
-  import { streams } from "$lib/stores";
+  import { players, streams } from "$lib/stores";
 
   export let id: number;
   export let player: Twitch.Player;

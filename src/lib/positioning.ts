@@ -4,9 +4,13 @@ export function dragElement(element: HTMLElement) {
   let xDistance: number;
   let yDistance: number;
 
-  element.onmousedown = dragMousedown;
+  if (document.getElementById(element.id + "-header")) {
+    document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
+  } else {
+    element.onmousedown = dragMouseDown;
+  }
   
-  function dragMousedown(e: MouseEvent): void {
+  function dragMouseDown(e: MouseEvent): void {
     e.preventDefault();
 
     xPos = e.clientX;

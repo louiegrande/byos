@@ -27,7 +27,7 @@
 
     players.put(id, player);
 
-    const draggableElement = document.getElementById(`twitch-player-${id}`);
+    const draggableElement = document.getElementById(`twitch-module-${id}`);
 
     if (draggableElement != null) {
       dragElement(draggableElement);
@@ -35,4 +35,7 @@
   });
 </script>
 
-<div id="twitch-player-{id}" class="draggable"></div>
+<div id="twitch-module-{id}" class="draggable">
+  <div id="twitch-player-{id}"/>
+  <div id="twitch-module-{id}-header" class="dragHeader"/>
+</div>

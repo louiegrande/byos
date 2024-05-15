@@ -36,7 +36,7 @@ function createPlayers(init: Map<number,Twitch.Player>): Writable<Map<number,Twi
       update((players) => {
         players.delete(id);
         return players;
-    });
+      });
     },
     get: (id: number) => {
       let player;
