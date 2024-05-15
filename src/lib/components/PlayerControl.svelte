@@ -4,8 +4,8 @@
 
   export let id: number;
   let player: Twitch.Player = $players.get(id);
-  let paused: Boolean;
-  let muted: Boolean;
+  let paused: Boolean = false;
+  let muted: Boolean = false;
   let channelName: string = "";
 
   onMount(async () => {
@@ -23,7 +23,8 @@
   });
 
   function mute() {
-    player.setMuted(!player.getMuted());
+    muted = !player.getMuted();
+    player.setMuted(muted);
   }
 
   function play() {
