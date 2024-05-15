@@ -10,7 +10,6 @@
       <TwtPlayer
         id={stream[0]}
         channel={stream[1].channelName}
-        controls={false}
       />
     {/if}
   {/each}

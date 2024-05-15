@@ -3,14 +3,14 @@
   import { players } from '$lib/stores';
   import { dragElement } from '$lib/positioning';
 
-  export let channel: string = 'louiegrande';
+  export let channel: string = 'Wirtual';
   export let width: string = '100%';
   export let height: string = '100%';
   export let autoplay: boolean = true;
-  export let muted: boolean = true;
+  export let muted: boolean = false;
   export let parent: string = 'localhost';
-  export let id: string | number;
-  export let controls: boolean = true;
+  export let id: number;
+  export let controls: boolean = false;
 
   let player: Twitch.Player;
 
@@ -20,7 +20,7 @@
   	  width,
   	  height,
   	  autoplay,
-  	  muted,
+      muted,
   	  parent,
       controls
     });

@@ -4,7 +4,7 @@ export function dragElement(element: HTMLElement) {
   let xDistance: number;
   let yDistance: number;
 
-  if (document.getElementById(element.id + "-header")) {
+  if (document.getElementById(element.id + "-header") !== null) {
     document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
   } else {
     element.onmousedown = dragMouseDown;

@@ -1,23 +1,36 @@
 <script lang="ts">
   import { players, streams } from "$lib/stores";
+  import { onMount } from "svelte";
 
   export let id: number;
-  export let player: Twitch.Player;
-  let muted: Boolean = player.getMuted();
-  let paused: Boolean = player.isPaused();
+  let player: Twitch.Player = $players.get(id);
+  let paused: Boolean;
+  let muted: Boolean;
+  let channelName: string = "";
+
+  onMount(async () => {
+    player.addEventListener(Twitch.Player.READY, () => {
+      channelName = player.getChannel();
+    });
+
+    player.addEventListener(Twitch.Player.PLAYING, () => {
+      paused = false;
+    });
+
+    player.addEventListener(Twitch.Player.PAUSE, () => {
+      paused = true;
+    });
+  });
 
   function mute() {
-    muted = !player.getMuted()
-    player.setMuted(muted);
+    player.setMuted(!player.getMuted());
   }
 
   function play() {
     if (player.isPaused()) {
       player.play();
-      paused = false;
     } else {
       player.pause();
-      paused = true;
     }
   }
 
@@ -28,7 +41,7 @@
 </script>
 
 <div class="row singleRow">
-  <p class="rowElement">{$streams.get(id).channelName}</p>
+  <p class="rowElement">{channelName}</p>
 </div>
 <div class="row singleRow">
   <button class="rowElement" on:click={play} style="width: 1.25rem">
