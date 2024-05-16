@@ -1,6 +1,8 @@
 export function dragElement(element: HTMLElement) {
   let xPos: number;
   let yPos: number;
+  let xOffset: number = 0;
+  let yOffset: number = 0;
   let xDistance: number;
   let yDistance: number;
 
@@ -13,8 +15,8 @@ export function dragElement(element: HTMLElement) {
   function dragMouseDown(e: MouseEvent): void {
     e.preventDefault();
 
-    xPos = e.clientX;
-    yPos = e.clientY;
+    yPos = e.clientY - yOffset;
+    xPos = e.clientX - xOffset;
 
     document.onmouseup = closeDragElement;
 
@@ -23,14 +25,24 @@ export function dragElement(element: HTMLElement) {
   
   function elementDrag(e: MouseEvent): void {
     e.preventDefault();
+    const container: HTMLElement = element.parentElement;
+    const containerRect: DOMRect = container.getBoundingClientRect();
+    const elementRect: DOMRect = element.getBoundingClientRect();
 
-    xDistance = xPos - e.clientX;
-    yDistance = yPos - e.clientY;
-    xPos = e.clientX;
-    yPos = e.clientY;
 
-    element.style.top = (element.offsetTop - yDistance) + "px";
-    element.style.left = (element.offsetLeft - xDistance) + "px";
+    xDistance =  e.clientX - xPos;
+    yDistance =  e.clientY - yPos;
+    
+    const maxX = containerRect.width - elementRect.width;
+    const maxY = containerRect.height - elementRect.height;
+
+    xDistance = Math.max(0, Math.min(xDistance, maxX));
+    yDistance = Math.max(0, Math.min(yDistance, maxY));
+
+    element.style.transform = `translate(${xDistance}px, ${yDistance}px)` 
+
+    xOffset = xDistance;
+    yOffset = yDistance;
   }
 
   function closeDragElement(): void {

@@ -4,12 +4,14 @@
 
   export let id: number;
   let player: Twitch.Player = $players.get(id);
-  let paused: Boolean = false;
-  let muted: Boolean = false;
+  let paused: Boolean;
+  let muted: Boolean;
   let channelName: string = "";
 
   onMount(async () => {
     player.addEventListener(Twitch.Player.READY, () => {
+      paused = player.isPaused();
+      muted = player.getMuted();
       channelName = player.getChannel();
     });
 

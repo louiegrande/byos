@@ -4,7 +4,7 @@
   import { streams } from "$lib/stores";
 </script>
 
-<div class="streamContainer">
+<div class="streamContainer" id="container">
   {#each $streams.entries() as stream (stream[0])}
     {#if stream[1].streamingService === StreamingService.TWITCH}
       <TwtPlayer
