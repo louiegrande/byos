@@ -6,11 +6,7 @@ export function dragElement(element: HTMLElement) {
   let xDistance: number;
   let yDistance: number;
 
-  if (document.getElementById(element.id + "-header") !== null) {
-    document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
-  } else {
-    element.onmousedown = dragMouseDown;
-  }
+  element.onmousedown = dragMouseDown;
   
   function dragMouseDown(e: MouseEvent): void {
     e.preventDefault();

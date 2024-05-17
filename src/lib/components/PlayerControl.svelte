@@ -7,12 +7,14 @@
   let paused: Boolean;
   let muted: Boolean;
   let channelName: string = "";
+  $: volume = 0.5;
 
   onMount(async () => {
     player.addEventListener(Twitch.Player.READY, () => {
       paused = player.isPaused();
       muted = player.getMuted();
       channelName = player.getChannel();
+      volume = player.getVolume();
     });
 
     player.addEventListener(Twitch.Player.PLAYING, () => {
@@ -41,6 +43,17 @@
     streams.delete(id);
     players.delete(id);
   }
+
+  function setVolume() {
+    player.setVolume(volume);
+    if (volume === 0) {
+      player.setMuted(true);
+      muted = true;
+    } else {
+      player.setMuted(false);
+      muted = false;
+    }
+  }
 </script>
 
 <div class="row singleRow">
@@ -61,6 +74,16 @@
       <img class="icon" src="icons/unmute.svg"/>
     {/if}
   </button>
+  <input
+    class="rowElement volume"
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    bind:value="{volume}"
+    style="width: 10.25rem"
+    on:change={setVolume}
+  />
   <button class="rowElement" on:click={remove} style="width: 1.25rem">
     <img class="icon deleteIcon" src="icons/trash.svg"/>
   </button>
