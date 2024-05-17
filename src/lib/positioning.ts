@@ -2,10 +2,10 @@ export function dragElement(element: HTMLElement) {
   const container: HTMLElement = element.parentElement;
   const containerRect: DOMRect = container.getBoundingClientRect();
   const elementRect: DOMRect = element.getBoundingClientRect();
+  let xOffset: number = ((containerRect.width - elementRect.width) * 100) / containerRect.width;
+  let yOffset: number = ((containerRect.height - elementRect.height) * 100) / containerRect.height;
   let xPos: number;
   let yPos: number;
-  let xOffset: number = 0;
-  let yOffset: number = 0;
   let xDistance: number;
   let yDistance: number;
 

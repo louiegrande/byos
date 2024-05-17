@@ -14,7 +14,7 @@
 
 <button class="fullscreen" on:click={handleFullscreen}>
   {#if isFullscreen}
-    <img class="icon" src="icons/fullscreen.svg"/>
+    <img class="icon" src="icons/exitFullscreen.svg"/>
   {:else}
     <img class="icon" src="icons/fullscreen.svg"/>
   {/if}
