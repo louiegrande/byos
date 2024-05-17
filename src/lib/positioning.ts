@@ -1,4 +1,7 @@
 export function dragElement(element: HTMLElement) {
+  const container: HTMLElement = element.parentElement;
+  const containerRect: DOMRect = container.getBoundingClientRect();
+  const elementRect: DOMRect = element.getBoundingClientRect();
   let xPos: number;
   let yPos: number;
   let xOffset: number = 0;
@@ -11,8 +14,8 @@ export function dragElement(element: HTMLElement) {
   function dragMouseDown(e: MouseEvent): void {
     e.preventDefault();
 
-    yPos = e.clientY - yOffset;
-    xPos = e.clientX - xOffset;
+    xPos = (((e.clientX - containerRect.left) * 100) / containerRect.width) - xOffset;
+    yPos = (((e.clientY - containerRect.top) * 100) / containerRect.height) - yOffset;
 
     document.onmouseup = closeDragElement;
 
@@ -21,21 +24,19 @@ export function dragElement(element: HTMLElement) {
   
   function elementDrag(e: MouseEvent): void {
     e.preventDefault();
-    const container: HTMLElement = element.parentElement;
-    const containerRect: DOMRect = container.getBoundingClientRect();
-    const elementRect: DOMRect = element.getBoundingClientRect();
 
 
-    xDistance =  e.clientX - xPos;
-    yDistance =  e.clientY - yPos;
+    xDistance = (((e.clientX - containerRect.left) * 100) / containerRect.width) - xPos;
+    yDistance = (((e.clientY - containerRect.top) * 100) / containerRect.height) - yPos;
     
-    const maxX = containerRect.width - elementRect.width;
-    const maxY = containerRect.height - elementRect.height;
+    const maxX = ((containerRect.width - elementRect.width) * 100) / containerRect.width;
+    const maxY = ((containerRect.height - elementRect.height) * 100) / containerRect.height;
 
     xDistance = Math.max(0, Math.min(xDistance, maxX));
     yDistance = Math.max(0, Math.min(yDistance, maxY));
 
-    element.style.transform = `translate(${xDistance}px, ${yDistance}px)` 
+    element.style.left = `${xDistance}%` 
+    element.style.top = `${yDistance}%` 
 
     xOffset = xDistance;
     yOffset = yDistance;
