@@ -3,6 +3,14 @@
   import { StreamingService } from "$lib/stream";
   import { streams } from "$lib/stores";
   import StreamControl from "./StreamControl.svelte";
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.getElementById('container')?.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
 </script>
 
 <div class="streamContainer" id="container">
@@ -14,5 +22,5 @@
       />
     {/if}
   {/each}
-  <StreamControl/>
+  <StreamControl on:toggleFullscreen={toggleFullscreen}/>
 </div>
